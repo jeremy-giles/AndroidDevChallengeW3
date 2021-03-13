@@ -40,7 +40,7 @@ fun NavGraph(startDestination: String = MainDestinations.WELCOME_ROUTE) {
         startDestination = startDestination
     ) {
         composable(MainDestinations.WELCOME_ROUTE) {
-            WelcomeScreen(loginAction = actions.actionLogin )
+            WelcomeScreen(loginAction = actions.actionLogin)
         }
         composable(MainDestinations.LOGIN_ROUTE) {
             LoginScreen()

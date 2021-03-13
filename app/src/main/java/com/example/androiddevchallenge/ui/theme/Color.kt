@@ -26,4 +26,3 @@ val taupe100 = Color(0xFFF0EAE2)
 val white850 = Color(0xD9FFFFFF)
 val white800 = Color(0xCCFFFFFF)
 val white150 = Color(0x26FFFFFF)
-
