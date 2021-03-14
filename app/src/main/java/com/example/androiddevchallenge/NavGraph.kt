@@ -18,6 +18,7 @@ package com.example.androiddevchallenge
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
@@ -49,5 +50,13 @@ fun NavGraph(startDestination: String = MainDestinations.WELCOME_ROUTE) {
 }
 
 class MainActions(navController: NavHostController) {
-    val actionLogin: () -> Unit = { navController.navigate(MainDestinations.LOGIN_ROUTE) }
+    val actionLogin: () -> Unit = {
+        navController.navigate(MainDestinations.LOGIN_ROUTE) {
+            NavOptions.Builder()
+                .setEnterAnim(R.anim.fade_in)
+                .setPopEnterAnim(R.anim.fade_in)
+                .setExitAnim(R.anim.fade_out)
+                .setPopExitAnim(R.anim.fade_out)
+        }
+    }
 }
