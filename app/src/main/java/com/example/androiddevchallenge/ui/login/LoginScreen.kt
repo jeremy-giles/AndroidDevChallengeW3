@@ -16,6 +16,7 @@
 package com.example.androiddevchallenge.ui.login
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -25,6 +26,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -109,26 +111,54 @@ fun LoginScreen() {
                         context.startActivity(Intent(context, HomeActivity::class.java))
                     }
                 )
-                Text(
-                    buildAnnotatedString {
-                        append(stringResource(id = R.string.account_question))
-                        withStyle(
-                            style = SpanStyle(
-                                textDecoration = TextDecoration.Underline
-                            )
-                        ) {
-                            append(" ")
-                            append(stringResource(id = R.string.sign_up).capitalize(Locale.ROOT))
-                        }
-                    },
-                    style = MaterialTheme.typography.body1.copy(
-                        color = MaterialTheme.colors.onBackground
-                    ),
-                    modifier = Modifier.paddingFromBaseline(top = 32.dp)
-                )
+                SignUp { value ->
+                    Toast.makeText(context, value, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
+}
+
+@Composable
+fun SignUp(
+    onClick: (value: String) -> Unit
+) {
+    val signUpTag = "SIGN_UP"
+
+    val annotatedString = buildAnnotatedString {
+        append(stringResource(id = R.string.account_question))
+        append(" ")
+
+        // Attach URL annotation to the following content
+        // until 'pop()' is called
+        pushStringAnnotation(tag = signUpTag, annotation = "Sign up action")
+        withStyle(
+            style = SpanStyle(
+                textDecoration = TextDecoration.Underline
+            )
+        ) {
+            append(stringResource(id = R.string.sign_up).capitalize(Locale.ROOT))
+        }
+        pop()
+    }
+
+    ClickableText(
+        text = annotatedString,
+        style = MaterialTheme.typography.body1.copy(
+            color = MaterialTheme.colors.onBackground
+        ),
+        modifier = Modifier
+            .paddingFromBaseline(top = 32.dp),
+        onClick = { offset ->
+            annotatedString.getStringAnnotations(
+                tag = signUpTag,
+                start = offset, end = offset
+            )
+                .firstOrNull()?.let { annotation ->
+                    onClick(annotation.item)
+                }
+        }
+    )
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
