@@ -31,8 +31,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.model.Item
+import com.example.androiddevchallenge.model.favorite_collections
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.theme.typography
 import dev.chrisbanes.accompanist.coil.CoilImage
 
@@ -63,6 +66,26 @@ fun CircleItem(item: Item) {
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .paddingFromBaseline(top = 24.dp)
+        )
+    }
+}
+
+@Preview("CircleItem Light Theme")
+@Composable
+fun CircleItemLightPreview() {
+    MyTheme {
+        CircleItem(
+            favorite_collections[0]
+        )
+    }
+}
+
+@Preview("CircleItem Dark Theme")
+@Composable
+fun CircleItemDarkPreview() {
+    MyTheme(darkTheme = true) {
+        CircleItem(
+            favorite_collections[0]
         )
     }
 }

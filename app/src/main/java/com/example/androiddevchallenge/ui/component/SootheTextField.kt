@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -26,8 +27,13 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
 fun MySootheTextField(
@@ -60,4 +66,64 @@ fun MySootheTextField(
             .height(56.dp)
             .fillMaxWidth()
     )
+}
+
+@Preview("MySootheTextField Light Theme")
+@Composable
+fun MySootheTextFieldLightPreview() {
+    MyTheme {
+        MySootheTextField(
+            placeholder = stringResource(id = R.string.email_label),
+            value = "",
+            onValueChange = {},
+        )
+    }
+}
+
+@Preview("MySootheTextField Dark Theme")
+@Composable
+fun MySootheTextFieldBarDarkPreview() {
+    MyTheme(darkTheme = true) {
+        MySootheTextField(
+            placeholder = stringResource(id = R.string.email_label),
+            value = "",
+            onValueChange = {},
+        )
+    }
+}
+
+@Preview("MySootheTextField Light Theme", group = "Leading Icon")
+@Composable
+fun MySootheTextFieldWithIconLightPreview() {
+    MyTheme {
+        MySootheTextField(
+            placeholder = stringResource(id = R.string.search),
+            value = "",
+            onValueChange = {},
+            leadingIcon = {
+                Icon(
+                    painterResource(id = R.drawable.ic_search),
+                    contentDescription = "search icon"
+                )
+            }
+        )
+    }
+}
+
+@Preview("MySootheTextField Dark Theme", group = "Leading Icon")
+@Composable
+fun MySootheTextFieldWithIconDarkPreview() {
+    MyTheme(darkTheme = true) {
+        MySootheTextField(
+            placeholder = stringResource(id = R.string.search),
+            value = "",
+            onValueChange = {},
+            leadingIcon = {
+                Icon(
+                    painterResource(id = R.drawable.ic_search),
+                    contentDescription = "search icon"
+                )
+            }
+        )
+    }
 }

@@ -29,8 +29,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import java.util.Locale
 
 data class NavItem(val icon: ImageVector, val title: String)
@@ -66,5 +68,21 @@ fun SootheBottomBar() {
                 onClick = { /* TODO */ },
             )
         }
+    }
+}
+
+@Preview("SootheBottomBar Light Theme")
+@Composable
+fun SootheBottomBarLightPreview() {
+    MyTheme {
+        SootheBottomBar()
+    }
+}
+
+@Preview("SootheBottomBar Dark Theme")
+@Composable
+fun SootheBottomBarDarkPreview() {
+    MyTheme(darkTheme = true) {
+        SootheBottomBar()
     }
 }

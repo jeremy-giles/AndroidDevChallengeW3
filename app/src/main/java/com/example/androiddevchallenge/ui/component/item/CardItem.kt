@@ -31,8 +31,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.model.Item
+import com.example.androiddevchallenge.model.favorite_collections
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
@@ -65,5 +68,25 @@ fun CardItem(item: Item) {
                     .padding(end = 16.dp)
             )
         }
+    }
+}
+
+@Preview("CardItem Light Theme")
+@Composable
+fun CardItemLightPreview() {
+    MyTheme {
+        CardItem(
+            favorite_collections[0]
+        )
+    }
+}
+
+@Preview("CardItem Dark Theme")
+@Composable
+fun CardItemDarkPreview() {
+    MyTheme(darkTheme = true) {
+        CardItem(
+            favorite_collections[0]
+        )
     }
 }

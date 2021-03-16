@@ -19,12 +19,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import java.util.Locale
 
 @Composable
@@ -39,11 +44,33 @@ fun MySootheButton(
             .height(height = 72.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
-            contentColor = MaterialTheme.colors.onPrimary
+            contentColor = colors.onPrimary
         ),
         shape = MaterialTheme.shapes.medium,
         onClick = onClick,
     ) {
         Text(text = label.toUpperCase(Locale.ROOT))
+    }
+}
+
+@Preview("MySootheButton Light Theme")
+@Composable
+fun MySootheButtonLightPreview() {
+    MyTheme {
+        MySootheButton(
+            label = stringResource(id = R.string.log_in),
+            backgroundColor = colors.secondary
+        ) {}
+    }
+}
+
+@Preview("MySootheButton Dark Theme")
+@Composable
+fun MySootheButtonDarkPreview() {
+    MyTheme(darkTheme = true) {
+        MySootheButton(
+            label = stringResource(id = R.string.log_in),
+            backgroundColor = colors.secondary
+        ) {}
     }
 }

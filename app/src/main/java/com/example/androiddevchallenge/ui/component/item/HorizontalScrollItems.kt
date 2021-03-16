@@ -23,9 +23,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.model.Item
+import com.example.androiddevchallenge.model.favorite_collections
 import com.example.androiddevchallenge.ui.component.HorizontalScrollableGrid
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import java.util.Locale
 
 enum class ItemType {
@@ -54,6 +57,32 @@ fun HorizontalScrollItems(type: ItemType, title: String, items: List<Item>, rowC
                     ItemType.Circle -> CircleItem(item = item)
                 }
             }
+        )
+    }
+}
+
+@Preview("HorizontalScrollItems Light Theme")
+@Composable
+fun HorizontalScrollItemsLightPreview() {
+    MyTheme {
+        HorizontalScrollItems(
+            type = ItemType.Card,
+            title = "title",
+            items = favorite_collections,
+            rowCount = 2
+        )
+    }
+}
+
+@Preview("HorizontalScrollItems Dark Theme")
+@Composable
+fun HorizontalScrollItemsDarkPreview() {
+    MyTheme(darkTheme = true) {
+        HorizontalScrollItems(
+            type = ItemType.Card,
+            title = "title",
+            items = favorite_collections,
+            rowCount = 2
         )
     }
 }
